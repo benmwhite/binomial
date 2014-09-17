@@ -1,18 +1,19 @@
 library(shiny)
-library(ggvis)
-
+library(ggplot2)
 shinyServer(function(input, output) {
-
+  
+  # Expression that generates a histogram. The expression is
+  # wrapped in a call to renderPlot to indicate that:
+  #
+  #  1) It is "reactive" and therefore should re-execute automatically
+  #     when inputs change
+  #  2) Its output type is a plot
+  
   output$distPlot <- renderPlot({
-
-    # generate bins based on input$bins from ui.R
-    x <- 1:20
-    probability <- dbinom(x, size = 20, prob = input$p)
-    plotdat <- data.frame(x, probability)
-
-    # draw the histogram with the specified number of bins
-    plotdat %>% ggvis(~x, ~probability) %>% layer_bars()
-
+    x    <- 1:10
+    probs <- dbinom(x, size = 10, prob = input$p)
+    qplot(x, probs, geom = c("point", "line"), 
+          main = "Binomial Distribution Density (n = 10)",
+          ylab = "p(x)") + theme_bw()
   })
-
 })
