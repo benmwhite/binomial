@@ -10,10 +10,10 @@ shinyServer(function(input, output) {
   #  2) Its output type is a plot
   
   output$distPlot <- renderPlot({
-    x    <- 1:10
-    probs <- dbinom(x, size = 10, prob = input$p)
+    x    <- 1:input$n
+    probs <- dbinom(x, size = input$n, prob = input$p)
     qplot(x, probs, geom = c("point", "line"), 
-          main = "Binomial Distribution Density (n = 10)",
+          main = paste("Binomial Distribution Density, n = ", input$n),
           ylab = "p(x)") + theme_bw()
   })
 })

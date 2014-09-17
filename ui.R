@@ -14,6 +14,9 @@ shinyUI(fluidPage(
                   min = 0,
                   max = 1,
                   value = 0.5)
+      textInput("n",
+                "number of trials:",
+                value = 10)
     ),
     
     # Show a plot of the generated distribution
