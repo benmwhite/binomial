@@ -13,9 +13,12 @@ shinyUI(fluidPage(
                   "value of parameter p:",
                   min = 0,
                   max = 1,
-                  value = 0.5)
-      textInput("n",
-                "number of trials:",
+                  value = 0.5),
+      sliderInput("n",
+                "number of trials n:",
+                min = 1,
+                max = 20,
+                step = 1,
                 value = 10)
     ),
     
